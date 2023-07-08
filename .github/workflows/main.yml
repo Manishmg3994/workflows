@@ -1,0 +1,29 @@
+name: Generate README.md
+
+on:
+  release:
+    types:
+    - published
+
+jobs:
+  generate-readme:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Add input fields
+      uses: actions/setup-input@v2
+      with:
+        inputs:
+          host:
+            message: Enter the host of your VPS
+            type: string
+          username:
+            message: Enter the username for your VPS
+            type: string
+          password:
+            message: Enter the password for your VPS
+            type: password
+          remote_path:
+            message: Enter the remote path on your VPS
+            type: string
+    - name: Generate README.md
